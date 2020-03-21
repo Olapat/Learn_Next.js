@@ -5,6 +5,7 @@ const Sidebar = props => {
   const { toggleSidebar, sideOpen } = props
   return (
     <aside className={sideOpen ? 'on-sidebar': ''}>
+      <div>
       <ul>
         <li>
           <Link href="/">
@@ -14,14 +15,22 @@ const Sidebar = props => {
           </Link>
         </li>
         <li>
-          <Link href="/menu1">
+          <Link href="/search">
             <a>
-              menu1
+              search
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/search-class">
+            <a>
+              search class
             </a>
           </Link>
         </li>
       </ul>
-      <button onClick={toggleSidebar}>
+      </div>
+      <button className='btn--sidebar-toggle' onClick={toggleSidebar}>
         x
       </button>
     </aside>

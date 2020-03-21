@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
 #__next {
@@ -12,15 +13,25 @@
     "header header"
     "sidebar main";
   width: 100%;
+  background-color: $color-base-bg;
 }
 
 main {
   grid-area: main;
+  height: 100%;
   min-height: calc(100vh - 7vh);
   width: calc(100vw - 50px);
-
+  padding: 1.2rem;
   &.on-sidebar {
     width: calc(100vw - 250px);
+  }
+
+  & > div {
+    height: 100%;
+    width: auto;
+    background-color: #fff;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
   }
 
   transition: width 0.1s linear;
@@ -32,9 +43,53 @@ aside {
   height: 100%;
   min-height: calc(100vh - 7vh);
   transition: width 0.1s linear;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  position: relative;
+
+  div {
+    overflow-x: hidden;
+  }
+  ul {
+    width: 250px;
+    li {
+      a {
+        text-decoration: none;
+        color: $color-black-light;
+        font-weight: 500;
+        display: block;
+        padding: 1rem 0.3rem;
+      }
+
+      &:hover {
+        a {
+          color: $color-primary;
+        }
+      }
+    }
+  }
 
   &.on-sidebar {
     width: 250px;
+  }
+
+  .btn--sidebar-toggle {
+    position: absolute;
+    top: 0.3rem;
+    right: 0;
+    transform: translateX(100%);
+    z-index: 3;
+    background: none;
+    background-color: $color-primary-soft;
+    border: 1px solid $color-border-gray;
+    height: 50px;
+    width: 20px;
+    transition: width 0.1s;
+    cursor: pointer;
+
+    &:hover {
+      width: 50px;
+    }
   }
 }
 
@@ -44,6 +99,8 @@ header {
   display: grid;
   grid-template-columns: 250px 2.7fr 1fr;
   align-items: center;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
 
   .logo {
     width: 100%;
@@ -63,3 +120,4 @@ header {
 }
 
 @import "./pages/index.scss";
+@import "./components/index.scss";
