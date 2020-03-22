@@ -1,23 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import axios from 'axios'
-import config from '../config'
+import config from '../../config'
 
 const Todos = props => {
+  const [todos, setTodos] = useState(props.todos)
   useEffect(() => {
     console.log(props)
   }, [])
 
+  const onChangeTodos = index => {
+    const newTodos = [...todos]
+    newTodos[index].completed = !todos[index].completed
+    setTodos(newTodos)
+  }
+
   return (
     <div className='todos'>
-      {props.todos.map((item, index) => 
+      {todos.map((item, index) => 
         <div key={index}>
           <input
             id={item.id}
             name={item.id}
             type='checkbox'
             checked={item.completed}
+            onChange={() => onChangeTodos(index)}
           />
           <label htmlFor={item.id}>{item.title}</label>
+          <Link href={`/todos/${item.id}`} passHref>
+            <a>{'detail'}</a>
+          </Link>
         </div>
       )}
     </div>
