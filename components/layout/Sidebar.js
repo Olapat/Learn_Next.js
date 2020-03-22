@@ -28,6 +28,20 @@ const Sidebar = props => {
             </a>
           </Link>
         </li>
+        <li>
+          <Link href="/todos">
+            <a>
+              todos
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/posts">
+            <a>
+              posts
+            </a>
+          </Link>
+        </li>
       </ul>
       </div>
       <button className='btn--sidebar-toggle' onClick={toggleSidebar}>
