@@ -1,0 +1,30 @@
+{
+  "name": "learn_next.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olapat/Learn_Next.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Olapat/Learn_Next.js/issues"
+  },
+  "homepage": "https://github.com/Olapat/Learn_Next.js#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "next": "^9.3.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "sass": "^1.26.3",
+    "swr": "^0.1.18"
+  }
+}

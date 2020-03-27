@@ -1,0 +1,17 @@
+.form-group {
+  display: flex;
+  flex-direction:  column;
+}
+
+.box-search {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: .6rem
+}
+
+input {
+  padding: .3rem;
+  border: 1px solid $color-muted;
+  border-radius: 3px;
+  color: $color-muted;
+}
