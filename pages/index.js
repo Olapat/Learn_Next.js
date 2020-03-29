@@ -3,7 +3,8 @@ import React from 'react'
 const Index = () => {
   return (
     <div className='index'>
-      <h1>Learn Next.js</h1>
+      <h1>Welcom</h1>
+      <h2>Learn Next.js</h2>
     </div>
   )
 }

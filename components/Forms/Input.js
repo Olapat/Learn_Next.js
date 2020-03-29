@@ -1,7 +1,8 @@
 import React from 'react'
+import InputAntd from 'antd/lib/input'
 
 const Input = props => (
-  <input
+  <InputAntd
     {...props}
   />
 )

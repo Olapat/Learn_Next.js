@@ -1,9 +1,10 @@
 import React from 'react'
+import LayoutPrivate from '..//components/layout/LayoutPrivate'
 import BoxFormItem from '../components/Forms/BoxFormItem'
 
 const Search = () => {
   return (
-    <div className='search'>
+    <LayoutPrivate className='search'>
       <h1>Search</h1>
       <div className='box-search'>
         <BoxFormItem
@@ -24,12 +25,11 @@ const Search = () => {
         <BoxFormItem
           label='field 1'
         />
-
         <BoxFormItem
           label='field 1'
         />
       </div>
-    </div>
+    </LayoutPrivate>
   )
 }
 

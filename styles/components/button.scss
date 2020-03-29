@@ -1,0 +1,35 @@
+.btn {
+  background-color: $color-primary;
+  // outline-color: $color-primary;
+  border-color: $color-primary;
+  color: #fff;
+  transition: 0.5s ease;
+  outline: none;
+  box-shadow: none;
+  border-radius: 6px;
+  border-style: solid;
+  padding: 6px 6px;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &:hover {
+    color: #fff;
+    background-color: rgba($color: $color-primary, $alpha: 0.7);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($color: $color-primary, $alpha: 0.2);
+  }
+
+  &--outline {
+    color: $color-primary;
+    background-color: #fff;
+
+    &:hover {
+      // background-color: $color-primary;
+      // color: #fff;
+      color: $color-primary;
+      background-color: #fff;
+    }
+  }
+}

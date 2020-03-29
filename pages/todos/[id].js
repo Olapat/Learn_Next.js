@@ -1,6 +1,7 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import LayoutPrivate from '../../components/layout/LayoutPrivate'
 import config from '../../config'
 
 const SingleTodo = props => {
@@ -14,7 +15,7 @@ const SingleTodo = props => {
     return <div>Loading...</div>
   }
   return (
-    <div className='todo'>
+    <LayoutPrivate className='todos'>
       <div>
         <input
           id={todo?.id}
@@ -24,7 +25,7 @@ const SingleTodo = props => {
         />
         <label htmlFor={todo?.id}>{todo?.title}</label>
       </div>
-    </div>
+    </LayoutPrivate>
   )
 }
 

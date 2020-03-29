@@ -1,0 +1,20 @@
+.alert {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  transition: opacity 0.256s ease, margin 0.256s ease;
+  position: relative;
+  overflow: hidden;
+
+  &--open {
+    opacity: 1;
+    margin-bottom: 1.3rem;
+    height: 40px;
+  }
+
+  &__icon-close {
+    position: absolute;
+    top: 14px;
+    right: 10px;
+  }
+}

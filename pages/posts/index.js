@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useSWR from 'swr'
-import config from '../../config'
 import Axios from 'axios'
+import config from '../../config'
 
 const Posts = () => {
   const [count, setCount] = useState(0)

@@ -4,7 +4,7 @@ import Input from './Input';
 // delete props not use in Element
 const deleteObjectProps = props => {
   let newProps = Object.assign({}, props)
-  const keyPropsNotGet = ['label', 'labelClass', 'component', 'boxClass', 'errorMsg', 'required']
+  const keyPropsNotGet = ['label', 'labelClass', 'Component', 'boxClass', 'errorMsg', 'required']
   keyPropsNotGet.forEach(key => {
     delete newProps[key]
   });
@@ -17,13 +17,12 @@ const deleteObjectProps = props => {
 }
 
 export const BoxFormElement = props => {
-  const { component, labelClass, boxClass, label, required, name, errorMsg } = props;
-  const Component = component
+  const { Component, labelClass, boxClass, label, required, name, errorMsg } = props;
 
   console.count(`BoxFormElement: ${name} render`)
   return (
     <div className={`form-group ${boxClass ? boxClass : ''}`}>
-      {label && <label className={labelClass} htmlFor={name}>{label} {required && <span className='text-danger'>*</span>}</label>}
+      {label && <label className={labelClass} htmlFor={name}>{label} {required && <span color='red'>*</span>}</label>}
       <Component {...deleteObjectProps(props)} id={name} />
       <label className='error-validat-mgs' htmlFor={name}>{errorMsg}&nbsp;</label>
     </div>
@@ -31,7 +30,7 @@ export const BoxFormElement = props => {
 }
 
 BoxFormElement.defaultProps = {
-  component: Input
+  Component: Input
 }
 
 /**

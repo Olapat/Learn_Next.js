@@ -1,8 +1,18 @@
 import React from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useCookies } from 'react-cookie'
 
 const Sidebar = props => {
   const { toggleSidebar, sideOpen } = props
+  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const router = useRouter()
+
+  const logout = () => {
+    removeCookie('token')
+    router.replace('/login')
+  }
+
   return (
     <aside className={sideOpen ? 'on-sidebar': ''}>
       <div>
@@ -41,6 +51,11 @@ const Sidebar = props => {
               posts
             </a>
           </Link>
+        </li>
+        <li>
+          <button className='btn-logout' type='button' onClick={logout}>
+            Logout
+          </button>
         </li>
       </ul>
       </div>

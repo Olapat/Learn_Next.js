@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
+import LayoutPrivate from '../../components/layout/LayoutPrivate'
 import config from '../../config'
 
 const Todos = props => {
@@ -16,8 +17,8 @@ const Todos = props => {
   }
 
   return (
-    <div className='todos'>
-      {todos.map((item, index) => 
+    <LayoutPrivate className='todos'>
+      {todos.map((item, index) =>
         <div key={index}>
           <input
             id={item.id}
@@ -32,7 +33,7 @@ const Todos = props => {
           </Link>
         </div>
       )}
-    </div>
+    </LayoutPrivate>
   )
 }
 
@@ -42,9 +43,9 @@ export const getStaticProps = async () => {
     if (status === 200) {
       return {
         props: {
-          todos: status === 200 ? data: [],
-          status,
-          statusText
+          todos: status === 200 ? data : [],
+          status: status || null,
+          statusText: statusText || null
         }
       }
     } else {
@@ -54,8 +55,8 @@ export const getStaticProps = async () => {
     return {
       props: {
         todos: [],
-        status: error?.response?.status,
-        statusText: error?.response?.statusText
+        status: error?.response?.status || null,
+        statusText: error?.response?.statusText || null
       }
     }
   }

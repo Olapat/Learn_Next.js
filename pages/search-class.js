@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import LayoutPrivate from '..//components/layout/LayoutPrivate'
 import BoxFormItem from '../components/Forms/BoxFormItemClass'
 
 export default class SearchClass extends Component {
   render() {
     return (
-      <div className='search'>
+      <LayoutPrivate className='search'>
         <h1>Search Class</h1>
         <div className='box-search'>
           <BoxFormItem
@@ -30,7 +31,7 @@ export default class SearchClass extends Component {
             label='field 1'
           />
         </div>
-      </div>
+      </LayoutPrivate>
     )
   }
 }
