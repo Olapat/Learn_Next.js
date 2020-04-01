@@ -8,6 +8,7 @@ import LayoutPublic from '../components/layout/LayoutPublic'
 import BoxFormItem from '../components/Forms/BoxFormItem'
 import useForm from '../components/Forms/useForm'
 import Alert from '../components/Alert'
+import useCallApi from '../helper/callApi/useCallApi'
 
 const Login = () => {
   const [isAuth, setAuth] = useState(true)
@@ -15,27 +16,40 @@ const Login = () => {
   const [cookies, setCookie] = useCookies(['auth']);
   const router = useRouter()
 
-  const onSubmitLogin = async () => {
-    try {
-      const { data } = await Axios.post('/api/login', values)
-      if (data?.success === true) {
-        setCookie('token', data.token)
-        router.replace('/todos')
-      }
-    } catch (error) {
-      if (error?.response?.data) {
-        const { data } = error?.response
-        setErrorMsg(data?.error_mgs)
-      } else {
-        setErrorMsg('เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองใหม่ภายหลัง')
-      }
-    }
+  const { post, loading } = useCallApi()
 
+  const onSubmitLogin = async () => {
+
+    /* example 1 */
+    // await post('/api/login', values, false, {
+    //   // ...option for axios
+    //   onError: err => { 
+    //     setErrorMsg(err)
+    //   },
+    //   onSuccess: data => { 
+    //     setCookie('token', data.token)
+    //     router.replace('/welcome')
+    //   },
+    //   msgError: 'เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองใหม่ภายหลัง',
+    //   // msgSuccess: 'msgSuccess'
+    // })
+
+    /* example 2 */
+    const [data, status, msg] = await post('/api/login', values, false, {
+      msgError: 'เกิดข้อผิดพลาดในการเข้าสู่ระบบ โปรดลองใหม่ภายหลัง',
+    })
+
+    if (status === 'success') {
+      setCookie('token', data.token)
+      router.replace('/welcome')
+    } else {
+      setErrorMsg(msg)
+    }
   }
 
   useEffect(() => {
     if (cookies.token) {
-      router.replace('/todos')
+      router.replace('/welcome')
     } else {
       setAuth(false)
     }
@@ -91,6 +105,7 @@ const Login = () => {
             showIcon
             onCloseAlert={() => { setErrorMsg(null) }}
           />
+          {loading && <p>loading...</p>}
           <BoxFormItem
             name='username'
             placeholder='username'
@@ -109,7 +124,7 @@ const Login = () => {
             errorMsg={errors.password}
           />
           <button className='btn login__btn login__btn-submit' type='submit' disabled={submiting}>
-            login
+            {`${submiting ? `login...` : 'login'}`}
           </button>
           <Link href='/forgot-password'>
             <a className='login__btn login__btn-fotgot'>
