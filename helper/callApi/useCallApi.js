@@ -3,6 +3,7 @@ import Axios from 'axios'
 import { useCookies } from 'react-cookie'
 import POST from './post'
 import GET from './get'
+import GETALL from './getAll'
 
 Axios.defaults.timeout = 90000
 Axios.defaults.headers.common['Content-Type'] = 'application/json'
@@ -22,7 +23,6 @@ const useCallApi = () => {
   }
 
   const get = async (url, isAuth = true, option) => {
-    console.log(url)
     setLoading(true)
     let token = cookies.token
     if (!isAuth) token = null
@@ -32,7 +32,25 @@ const useCallApi = () => {
     return res
   }
 
-  return { post, get, loading }
+  const getAll = async all => {
+    // set default
+    setLoading(true)
+    const apiAll = all.map(item => {
+      let token = cookies.token
+      if (item.isAuth === false) token = null
+      return {
+        ...item,
+        option: item.option || { headers: { 'Content-Type': 'application/json' } },
+        token
+      }
+    })
+
+    const res = await GETALL(apiAll)
+    setLoading(false)
+    return res
+  }
+
+  return { post, get, getAll, loading }
 }
 
 export default useCallApi

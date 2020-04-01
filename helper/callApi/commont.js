@@ -30,7 +30,7 @@ export const onErrorCall = (error, msgError) => {
 
 export const getOptionAxios = (option, token) => {
   let newOption = Object.assign({}, option)
-  const keyPropsNotGet = ['onError', 'onSuccess', 'msgError', 'msgSuccess']
+  const keyPropsNotGet = ['onError', 'onSuccess', 'msgError', 'msgSuccess', 'isAuth']
   keyPropsNotGet.forEach(key => {
     delete newOption[key]
   });

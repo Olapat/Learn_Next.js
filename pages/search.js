@@ -9,16 +9,41 @@ import message from 'antd/lib/message'
 const Search = () => {
   const [data, setData] = useState([])
 
-  const { get, loading } = useCallApi()
+  const { get, getAll, loading } = useCallApi()
 
   const onSubmitSearch = async () => {
-    const [dataSearch, status, msg] = await get('/api/search' + convertParams(values))
+    /* example use get */
+    // const [dataSearch, status, msg] = await get('/api/search' + convertParams(values))
 
-    if (status === 'success' && dataSearch.data) {
-      setData(dataSearch.data)
-    } else {
-      message.error(msg)
-    }
+    // if (status === 'success' && dataSearch.data) {
+    //   setData(dataSearch.data)
+    // } else {
+    //   message.error(msg)
+    // }
+
+    /* example use getAll */
+    const [dataAll, statusAll, msgAll] = await getAll([
+      {
+        url: '/api/search' + convertParams(values),
+        isAuth: true,
+        // option
+      },
+      {
+        url: 'https://jsonplaceholder.typicode.com/todos',
+        isAuth: false
+      }
+    ])
+
+    const [dataSearch, dataTodo] = dataAll
+    const [statusSearch, statusTodo] = statusAll
+    const [msgSearch, msgTodo] = msgAll
+
+    console.log('dataSearch:', dataSearch)
+    console.log('dataTodo:', dataTodo)
+    console.log('statusSearch:', statusSearch)
+    console.log('statusSearch:', statusTodo)
+    console.log('msgSearch:', msgSearch)
+    console.log('msgTodo:', msgTodo)
   }
 
   const optionsForm = {
